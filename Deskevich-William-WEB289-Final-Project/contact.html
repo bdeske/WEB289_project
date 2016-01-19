@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<title>Little Bird Gardens</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/lilBird.css">
+<!--[if lt IE 9]>
+<script src="http://html5shim.google.com/svn/trunk/html5.js">
+</script>
+<! [endif]-->
+
+</head>
+
+<body>
+<div id="wrap">
+<header>
+<h1>Little Bird Gardens</h1>
+
+
+</header>
+
+<main>
+<nav>
+	<ul>
+		<li><a href="index.html">Home</a></li>
+		<li><a href="perennial.html">Perennials</a></li>
+		<li><a href="trees.html">Trees</a></li>
+		<li><a href="decidtrees.html">Desiduous Trees</a></li>
+		<li><a href="shrubs.html">Shrubs</a></li>
+		<li><a href="contact.html">Contact Us</a></li>
+	</ul>
+		
+</nav>
+<h2>Little Bird Friends</h2>
+<!-- <aside>Watch for our upcoming catalog</aside> -->
+<h3>Contact Us</h3>
+<p>Required information is marked with an asterisk (*)</p>
+<img src="images/streetplanter.jpg" alt="Street Container" width="350" height="513">
+<form  action="http://webdevbasics.net/scripts/demo.php" method="post">
+<fieldset>
+	<legend>Personal Information</legend>
+		<label for="fstName">* First Name: </label> <input type ="text" name="fstName" id="fstName" required="required"><br>
+		<label for="lstName">* Last Name: </label> <input type ="text" name="lstName" id="lstName" required="required"><br>
+			<input type="radio" name="gender" id="female" value="f"> <label for="female">Female</label><br>
+			<input type="radio" name="gender" id="male" value="m"> <label for="male">Male</label>
+</fieldset>
+<fieldset id="other">
+	<legend>Other Information</legend>
+			Favorite Season:<br>
+				<input type="radio" name="season" id="winter" value="winter"> <label for="winter">Winter</label><br>
+				<input type="radio" name="season" id="spring" value="spring"> <label for="spring">Spring</label><br>
+				<input type="radio" name="season" id="summer" value="summer"> <label for="summer">Summer</label><br>
+				<input type="radio" name="season" id="fall" value="fall"> <label for="fall">Fall</label>
+</fieldset>
+<fieldset>
+	<legend>Contact Information</legend>
+		<label for="Email">* E-mail: </label> <input type ="email" name="Email" id="Email" required="required"><br>
+		<label for="telPhone">Phone: </label> <input type ="tel" name="telPhone" id="telPhone"><br>
+		<label for="Comments">Comments: </label><textarea name="Comments" id="Comments" rows="2" cols="20" required="required"></textarea><br>
+		<label for="interests">Main Interests: </label>
+<select name="interests" id="interests">
+	<option>Design</option>
+	<option>Containers</option>
+	<option>Private Gardening</option>
+	<option>Classes and Lectures</option>
+	<option>Plant Material</option>
+</select><br>
+</fieldset>
+		<input id="submit" type="submit" value="submit" >
+</form>
+</main>
+
+
+</div>
+<footer>
+<p>Copyright &copy; 2014 Little Bird Gardens</p>
+<a href="mailto:william@Deskevich.com">william@deskevich.com</a>
+</footer>
+</body>
+
+
+</html>
