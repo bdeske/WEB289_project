@@ -48,6 +48,15 @@ h3 {
 span {
 	font-size: 150%
 	}
+
+#login {
+	font-size: 24px;
+	position: absolute;
+	top: 100px;
+	right: -100px;
+	text-shadow: 3px 3px 20px #fff;
+
+}
 	
 main img {
 	float: right;
