@@ -1,4 +1,32 @@
-
+#
+# DUMP FILE
+#
+# Database is ported from MS Access
+#------------------------------------------------------------------
+# Created using "MS Access to MySQL" form http://www.bullzip.com
+# Program Version 5.3.259
+#
+# OPTIONS:
+#   sourcefilename=C:\Users\william\Desktop\WEB289\littlebirdDB.accdb
+#   sourceusername=
+#   sourcepassword=
+#   sourcesystemdatabase=
+#   destinationdatabase=littlebirddb
+#   storageengine=MyISAM
+#   dropdatabase=0
+#   createtables=1
+#   unicode=1
+#   autocommit=1
+#   transferdefaultvalues=1
+#   transferindexes=1
+#   transferautonumbers=1
+#   transferrecords=1
+#   columnlist=1
+#   tableprefix=
+#   negativeboolean=0
+#   ignorelargeblobs=0
+#   memotype=LONGTEXT
+#
 
 CREATE DATABASE IF NOT EXISTS `littlebirddb`;
 USE `littlebirddb`;
