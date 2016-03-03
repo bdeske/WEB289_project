@@ -10,7 +10,7 @@ youAreHere('#navbar a', 'pageHighlight', 'current');
 // autoClear();
 // pickDate('#sightingdate');
 // accordions('#faqs');
-// validator('contact.html', '#formVal');
+validator('login_customer.php', '#formVal');
 
 
 

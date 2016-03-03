@@ -14,7 +14,7 @@
 
 
 
-<form action="." method="post" id="aligned">
+<form id="formval" action="." method="post" id="aligned">
         <input type="hidden" name="action" value="add_user">
 
 

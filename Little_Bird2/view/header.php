@@ -10,7 +10,7 @@ le.com/svn/trunk/html5.js">
 </script>
 <! [endif]-->
 <script src="js/jquery-1.11.1.js" type="text/javascript"></script>
-<script src="js/lilbirdCalls.js" type="text/javascript"></script>
+<script src="js/lilbirdcalls.js" type="text/javascript"></script>
 <script src="js/lilbird.js" type="text/javascript"></script>
 </head>
 

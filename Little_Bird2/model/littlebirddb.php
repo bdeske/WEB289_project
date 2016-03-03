@@ -60,6 +60,39 @@ function get_users_by_last_name($lName) {
     return $users;
 }
 
+function valid_email($email) {
+   global $db;
+$query = 'SELECT *
+            FROM Users
+            WHERE Email = :Email';
+$statement1 = $db->prepare($query);
+$statement1->bindValue(':Email', $email);
+$statement1->execute();
+$category = $statement1->fetch();
+// $emails = $category['Email'];
+// $userLevels = $category['Level'];
+$statement1->closeCursor();
+return $category;
+
+
+
+}
+
+function level($cat) { 
+    global $db;
+
+    if ($cat['Level'] == "A") {
+    echo "Welcome " . $cat['Email'] . " you are logged in as Admin";
+    } elseif($cat['Level'] == "M") {
+    echo "Welcome " . $cat['Email'] . " you are logged in as Member";
+    } else echo "Invalid Email";
+}
+// if ($userLevels == "A") {
+//     echo "Welcome " . $email . " you are logged in as Admin";
+//     } elseif($userLevels == "M") {
+//     echo "Welcome " . $email . " you are logged in as Member";
+//     } else echo "Invalid Email"
+
 // function get_customer_by_email($email) {
 //     global $db;
 //     $query = 'SELECT customerID, firstName, lastName

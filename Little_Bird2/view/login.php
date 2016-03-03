@@ -1,6 +1,5 @@
 <?php
-require('../model/user_db.php');
-require('../model/littlebirddb.php');
+
 
 
 $action = filter_input(INPUT_POST, 'action');

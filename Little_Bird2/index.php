@@ -41,7 +41,7 @@ break;
 add_user($fName, $lName, $email, $address, $city, $stateID, $zipCode, $password, $level);
     // // Display the user list
 
-    include_once ('view/login_customer.php');
+    include_once ('view/privileges.php');
 break;
 
 
@@ -63,7 +63,6 @@ case 'display_users':
 break; 
 
 case 'search_users': 
-include('view/user_search.php');
 if ($action == 'show_users') {
     $lName = filter_input(INPUT_POST, 'Last_Name');
     if (empty($lName)) {
@@ -74,11 +73,26 @@ if ($action == 'show_users') {
         include('view/user_search.php');
     }
 }
-    //  
+ 
     
 break; 
 
-    
+
+case 'validate_email':
+
+    $email = $_GET['Email'];
+    $password = $_GET['Password'];
+    $cat = valid_email($email);
+    if(isset($cat)) {
+        level($cat);
+    } else "Not Working";
+
+
+
+// include('view/user_search.php');
+
+break;     
+}    
 // useful code????
 
 
@@ -98,8 +112,6 @@ break;
     // include('view/user_search.php');
 
  
-} // end of switch case
-
 
 
 // } else if ($action == 'show_add_form'){

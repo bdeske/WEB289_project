@@ -8,7 +8,7 @@ $debug="true";
     try {
         $db = new PDO($dsn, $username, $password);
         if ($debug) {
-            echo "Successfully connected";
+            
         }
     } catch (PDOException $e) {
         $error_message = $e->getMessage();
