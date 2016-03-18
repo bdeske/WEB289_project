@@ -11,13 +11,13 @@ function get_products() {
 }
 
 
-function add_user($fName, $lName, $email, $address, $city, $stateID, $zipCode, $password, $level) {
+function add_user($fName, $lName, $email, $address, $city, $stateID, $zipCode, $password) {
 
     global $db;
-    $query = 'INSERT INTO Users
-                 (First_Name, Last_Name, Email, Address, City, StateID, Zip_Code, Password, Level)
+    $query = 'INSERT INTO users
+                 (First_Name, Last_Name, Email, Address, City, StateID, Zip_Code, Password)
               VALUES
-                 (:First_Name, :Last_Name, :Email, :Address, :City, :StateID, :Zip_Code, :Password, :Level)';
+                 (:First_Name, :Last_Name, :Email, :Address, :City, :StateID, :Zip_Code, :Password)';
     $statement = $db->prepare($query);
     $statement->bindValue(':First_Name', $fName);
     $statement->bindValue(':Last_Name', $lName);
@@ -27,7 +27,7 @@ function add_user($fName, $lName, $email, $address, $city, $stateID, $zipCode, $
     $statement->bindValue(':StateID', $stateID);
     $statement->bindValue(':Zip_Code', $zipCode);
     $statement->bindValue(':Password', $password);
-    $statement->bindValue(':Level', $level);
+    
     $statement->execute();
     $statement->closeCursor();
     
@@ -48,7 +48,7 @@ function get_users_by_last_name($lName) {
     echo "hfjhah";
     global $db;
     $query = 'SELECT First_Name, Last_Name, Email, City
-                FROM Users
+                FROM users
                 WHERE Last_Name = :Last_Name
                 ORDER BY Last_Name';
                 
@@ -60,17 +60,17 @@ function get_users_by_last_name($lName) {
     return $users;
 }
 
-function valid_email($email) {
+function valid_email($email, $password) {
+
    global $db;
 $query = 'SELECT *
-            FROM Users
-            WHERE Email = :Email';
+            FROM users
+            WHERE Email = :Email and Password = :Password';
 $statement1 = $db->prepare($query);
 $statement1->bindValue(':Email', $email);
+$statement1->bindValue(':Password', $password);
 $statement1->execute();
 $category = $statement1->fetch();
-// $emails = $category['Email'];
-// $userLevels = $category['Level'];
 $statement1->closeCursor();
 return $category;
 
@@ -82,9 +82,9 @@ function level($cat) {
     global $db;
 
     if ($cat['Level'] == "A") {
-    echo "Welcome " . $cat['Email'] . " you are logged in as Admin";
+    include('home_admin.php');
     } elseif($cat['Level'] == "M") {
-    echo "Welcome " . $cat['Email'] . " you are logged in as Member";
+    include('home_user.php');
     } else echo "Invalid Email";
 }
 // if ($userLevels == "A") {
@@ -145,19 +145,25 @@ function level($cat) {
 
 
 
-// function update_product($code, $name, $version, $release_date) {
-//     global $db;
-//     $query = 'UPDATE products
-//               SET name = :name,
-//                   version = :version,
-//                   releaseDate = :release_date
-//               WHERE productCode = :product_code';
-//     $statement = $db->prepare($query);
-//     $statement->bindValue(':name', $name);
-//     $statement->bindValue(':version', $version);
-//     $statement->bindValue(':release_date', $release_date);
-//     $statement->bindValue(':product_code', $code);
-//     $statement->execute();
-//     $statement->closeCursor();
-// }
+function update_products($productID, $plantname, $description, $size, $instock, $price) {
+    global $db;
+    $query = 'UPDATE Products
+              SET Plant_Name = :Plant_Name,
+                  Description = :Description,
+                  Size = :Size
+                  In_Stock = :In_Stock,
+                  Price = :Price
+              WHERE productID :ProductID';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':ProductID', $productID);
+    $statement->bindValue(':Plant_Name', $plantname);
+    $statement->bindValue(':Description', $description);
+    $statement->bindValue(':Size', $size);
+    $statement->bindValue(':In_Stock', $instock);
+    $statement->bindValue(':Price', $price);
+    $statement->execute();
+    $products = $statement->fetch();
+    $statement->closeCursor();
+    return $products;
+}
 ?>

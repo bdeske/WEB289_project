@@ -1,5 +1,5 @@
 <footer>
-<p>Copyright &copy; 2014 Little Bird Gardens</p>
+<p>Copyright &copy; 2016 Little Bird Gardens</p>
 
 </footer>
 </div>

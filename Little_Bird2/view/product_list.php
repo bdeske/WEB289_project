@@ -1,10 +1,21 @@
-
 <main>
     <ul id="navbar">
-        <li><a href="/WEB289/Little_Bird2/index.php">Home</a></li>
-        <li><a href="product_manager/view/index.php">View Products</a></li>
-        <li><a href="?action=home">Logout</a></li>
+        <li><a href="?action=go_to_home_admin">Home</a></li>
+        <li><a class="here" href="#">View Products</a></li>
+        <li><a href="?action=update_products">Update Products</a></li>
     </ul>
+
+    <ul id="navbar2">
+        <li><?php
+if($_SESSION["First_Name"]) {
+?>
+Welcome <?php echo $_SESSION["First_Name"]; ?>. Click here to <a href="?action=log_out" tite="Logout">Logout</a>
+<?php
+}
+?>
+        
+    </ul><br>
+
     <h1>Product List</h1>
 
     

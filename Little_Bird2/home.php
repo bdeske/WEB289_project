@@ -2,14 +2,15 @@
 <main>
 
 	<ul id="navbar">
-		<li><a href="/WEB289/Little_Bird2/index.php">Home</a></li>
-		<li><a href="?action=list_products">View Products</a></li>
+		<li><a  class="here" href="#">Home</a></li>
+		<li><a href="?action=list_products_home">View Products</a></li>
 	</ul>
 
 
 	<ul id="navbar2">
-		<li><a href="?action=login">Login</a></li>
-		<li><a href="?action=home">Logout</a></li>
+		<li><a href="?action=sign_up">Sign Up</a></li>
+		<li><a href="?action=log_in">Login</a></li>
+		
 	</ul>
 
 

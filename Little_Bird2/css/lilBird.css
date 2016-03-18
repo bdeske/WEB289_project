@@ -26,7 +26,7 @@ header, nav, main, footer {
 header h1 {
 	background-repeat: no-repeat;
 	background-image: url(../images/Lil-Bird-Masthead.png);
-	width: 800px; height: 150px;
+	width: 100%; height: 150px;
 	margin: auto;
 	padding-left: 20px;
 	padding-top: 20px;
@@ -35,6 +35,8 @@ header h1 {
 	white-space: nowrap;
 	overflow: hidden;
 	margin-bottom: 0;
+
+
 	}
 	
 h1,h2,h3 { 
@@ -64,24 +66,18 @@ span {
 }
 
 
-main img {
+#homephoto {
 	float: right;
 	border: 1px solid #000;
 	border-radius: 5px;
 	box-shadow: 5px 5px 5px #000;
-	margin: -100px 50px 50px 10px;
-	}
-
-
-	
-#designPhoto {
-	margin-top: 35px;
+	margin: 35px 50px 50px 10px;
 	}
 	
 	
 #info {
 	margin-left: 30px;
-	padding: 30px 450px 30px 50px;
+	padding: 30px 45px 30px 50px;
 	
 		}
 		
@@ -90,13 +86,6 @@ main table {
 	width: 90%;
 	border: 1px solid #48a;
 	border-collapse: collapse;
-	}
-
-caption {
-	font-size: 150%;
-	font-weight: bold;
-	text-align: left;
-	margin-bottom: 20px;
 	}
 
 
@@ -136,29 +125,14 @@ input{
 	margin-bottom: 10px;
 	}
 
-/*aside {
-	float: right;
-	Width: 125px;
-	font-weight: bold;
-	box-shadow: 0 0 5px #000;
-	border: 2px solid #fff;
-	text-align: center;
-	margin-right: 100px;
-	margin-top: -50px;
-	padding: 5px;
-	border-radius: 5px;
-	background-color: #aaa;
-	}*/
-	
-
-	
 #navbar {
 	text-align: center;
 	list-style-type: none;
-	width: 40%;
+	width: 50%;
 	display: inline-block;
 	margin-left: 20px;
 	margin-bottom: 25px;
+	
 	}
 	
 #navbar li {
@@ -170,27 +144,54 @@ display: inline-block;
 	text-decoration: none;
 	text-align: center;
 	/*margin-left: 5px;*/
-	color: #454;
+	/*color: #454;*/
 	font-size: 14px;
 	font-weight: bold;
 	padding: 8px 20px;
 	border-radius: 5px;
 	width: 50px;
 	background-color: rgba(255, 165, 165, .80);
-	color: #fff;
+	color: #000;
 	/*border-radius: 5px;*/
 	/*background-color: #888;*/
 	box-shadow: inset -2px -2px 2px #fff;
 	}
 
-#navbar .pageHighlight {
-	color: red;
-	background: red;
+#navbar .here { 
+	color: rgba(255, 165, 165, .80);
+	background: #333;
+
 }
+
+#navbar .here:hover { 
+	color: rgba(255, 165, 165, .80);
+	background-color: #333;
+	box-shadow: inset -2px -2px 2px #fff;
+}
+
+
+#navbar .here:visited { 
+	color: rgba(255, 165, 165, .80);
+	background: #333;
+
+}
+
+
+/*#navbar .here:link { 
+	color: red;
+	background: #fff;
+
+}*/
+
+
+/*#navbar a .pageHighlight {
+	color: #000;
+	background: #333;
+}*/
 	
-#navbar a:link { 
-	color: #050;
-	}
+/*#navbar a:link { 
+	color: rgba(255, 165, 165, .80);
+	}*/
 
 #navbar a:visited {
 	color: #333;
@@ -209,9 +210,10 @@ display: inline-block;
 	text-align: center;
 	list-style-type: none;
 	float: right;
-	width: 40%;
+	width: 45%;
 	display: inline-block;
-	margin-left: 20px;
+	/*margin-left: 5px;*/
+	
 	}
 	
 #navbar2 li {
@@ -226,7 +228,7 @@ display: inline-block;
 	color: #454;
 	font-size: 14px;
 	font-weight: bold;
-	padding: 8px 20px;
+	padding: 8px 10px;
 	border-radius: 5px;
 	width: 50px;
 	background-color: rgba(255, 165, 165, .80);
@@ -236,10 +238,10 @@ display: inline-block;
 	box-shadow: inset -2px -2px 2px #fff;
 	}
 
-#navbar2 .pageHighlight {
+/*#navbar2 .pageHighlight {
 	color: green;
 	background: red;
-}
+}*/
 	
 #navbar2 a:link { 
 	color: #050;
@@ -261,6 +263,7 @@ display: inline-block;
 
 #list {
 	margin-left: 150px;
+	margin-top: 50px;
 	list-style: none;
 	font-size: 20px;
 }
@@ -367,6 +370,22 @@ footer {
 #aligned .message {
     margin-left: .5em;
     width: 15em;
+}
+
+.tableheader {
+background-color: #95BEE6;
+color:#333;
+font-weight:bold;
+}
+.tablerow {
+background-color: #A7D6F1;
+color:#000;
+}
+.message {
+color: #FF0000;
+font-weight: bold;
+text-align: center;
+width: 100%;
 }
 	
 
