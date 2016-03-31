@@ -12,7 +12,7 @@
 		<li><?php
 if($_SESSION["First_Name"]) {
 ?>
-Welcome <?php echo $_SESSION["First_Name"]; ?>. Click here to <a href="?action=log_out" tite="Logout">Logout</a>
+<a href="?action=log_out" tite="Logout">Logout <?php echo $_SESSION["First_Name"]; ?></a>
 <?php
 }
 ?>

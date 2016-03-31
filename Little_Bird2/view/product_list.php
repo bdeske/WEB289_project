@@ -5,16 +5,14 @@
         <li><a href="?action=update_products">Update Products</a></li>
     </ul>
 
-    <ul id="navbar2">
+     <ul id="navbar2">
         <li><?php
 if($_SESSION["First_Name"]) {
 ?>
-Welcome <?php echo $_SESSION["First_Name"]; ?>. Click here to <a href="?action=log_out" tite="Logout">Logout</a>
+<a href="?action=log_out" tite="Logout">Logout <?php echo $_SESSION["First_Name"]; ?></a>
 <?php
 }
 ?>
-        
-    </ul><br>
 
     <h1>Product List</h1>
 

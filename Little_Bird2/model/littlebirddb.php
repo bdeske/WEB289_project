@@ -85,7 +85,13 @@ function level($cat) {
     include('home_admin.php');
     } elseif($cat['Level'] == "M") {
     include('home_user.php');
-    } else echo "Invalid Email";
+    } elseif($cat['Level'] == "B") {
+    include('home_admin_B.php');
+    }
+    else {
+     include('view/user_login_session.php');
+
+    echo "Invalid Email";}
 }
 // if ($userLevels == "A") {
 //     echo "Welcome " . $email . " you are logged in as Admin";
@@ -147,13 +153,13 @@ function level($cat) {
 
 function update_products($productID, $plantname, $description, $size, $instock, $price) {
     global $db;
-    $query = 'UPDATE Products
+    $query = 'UPDATE products
               SET Plant_Name = :Plant_Name,
                   Description = :Description,
                   Size = :Size
                   In_Stock = :In_Stock,
                   Price = :Price
-              WHERE productID :ProductID';
+              WHERE ProductID = :ProductID';
     $statement = $db->prepare($query);
     $statement->bindValue(':ProductID', $productID);
     $statement->bindValue(':Plant_Name', $plantname);
@@ -166,4 +172,82 @@ function update_products($productID, $plantname, $description, $size, $instock, 
     $statement->closeCursor();
     return $products;
 }
+
+
+function update_products_B($productID, $plantname, $description, $size, $instock) {
+    global $db;
+    $query = 'UPDATE products
+              SET Plant_Name = :Plant_Name,
+                  Description = :Description,
+                  Size = :Size,
+                  In_Stock = :In_Stock
+              WHERE ProductID = :ProductID';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':ProductID', $productID);
+    $statement->bindValue(':Plant_Name', $plantname);
+    $statement->bindValue(':Description', $description);
+    $statement->bindValue(':Size', $size);
+    $statement->bindValue(':In_Stock', $instock);
+    $statement->execute();
+    $products = $statement->fetch();
+    $statement->closeCursor();
+    return $products;
+}
+
+// Get cart subtotal
+function get_subtotal() {
+    $subtotal = 0;
+    foreach ($_SESSION['cart12'] as $item) {
+        $subtotal += $item['total'];
+    }
+    $subtotal_f = number_format($subtotal, 2);
+    return $subtotal_f;
+}
+
+function add_item($key, $quantity) {
+    global $db;
+   $products = get_products();
+    if ($quantity < 1) return;
+    // If item already exists in cart, update quantity
+    if (isset($_SESSION['cart'][$key])) {
+        $quantity += $_SESSION['cart'][$key]['qty'];
+        update_item($key, $quantity);
+        return;
+    }
+
+    // Add item
+    $cost = $products[$key]['Price'];
+    $total = $cost * $quantity;
+    $item = array(
+        'Plant_Name' => $products[$key]['Plant_Name'],
+        'Price' => $cost,
+        'qty'  => $quantity,
+        'total' => $total
+    );
+
+    $_SESSION['cart'][$key] = $item;
+    // $query = 'SELECT Plant_Name, Price
+    // FROM products';
+    // $statement = $db->prepare($query);
+    // $statement->execute();
+    // $item = $statement->fetchAll();
+    // $statement->closeCursor();
+    // return $item;
+    // var_dump($item);
+}
+
+function update_item($key, $quantity) {
+    $quantity = (int) $quantity;
+    if (isset($_SESSION['cart'][$key])) {
+        if ($quantity <= 0) {
+            unset($_SESSION['cart'][$key]);
+        } else {
+            $_SESSION['cart'][$key]['qty'] = $quantity;
+            $total = $_SESSION['cart'][$key]['Price'] *
+                     $_SESSION['cart'][$key]['qty'];
+            $_SESSION['cart'][$key]['total'] = $total;
+        }
+    }
+}
+
 ?>

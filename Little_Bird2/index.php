@@ -1,25 +1,22 @@
 <?php
-
 session_start();
-$message="";
-if(count($_POST)>0) {
-$conn = mysql_connect("mysql4.000webhost.com","a8935893_doe","roseanne54");
-mysql_select_db("a8935893_dodie", $conn);
-$result = mysql_query("SELECT * FROM users WHERE Email='" . $_POST["Email"] . "' and Password = '". $_POST["Password"]."'");
-if (mysql_error()) {
-    die(mysql_error());
-}
-$row  = mysql_fetch_array($result);
-if(is_array($row)) {
-$_SESSION["First_Name"] = $row['First_Name'];
-$_SESSION["Email"] = $row['Email'];
-$_SESSION["Password"] = $row['Password'];
-}
-}
+// Start session management with a persistent cookie
+$lifetime = 60 * 60 * 24 * 1;    // 1 day in seconds
+session_set_cookie_params($lifetime, '/');
+
+
+
+
+
+
 if(isset($_SESSION["First_Name"])) {
 // header("Location:view/user_dashboard.php");
 }
+// Create a cart array if needed
 
+ if (empty($_SESSION['cart'])) { $_SESSION['cart'] = array(); }
+
+ 
 include 'view/header.php';
 require('model/database_db.php');
 require('model/littlebirddb.php');
@@ -35,9 +32,21 @@ if ($action === NULL) {
 $lName = '';
 $users = array();
 
+
 switch( $action ) {
         case 'home':
-        include_once ('home.php');
+        if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'A')){
+       include('home_admin.php');
+        }
+        if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'B')){
+       include('home_admin_B.php');
+        }
+        if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'M')){
+       include('home_user.php');
+        }
+        else {
+            include('home.php');
+        }
 break;
 
     case 'sign_up':
@@ -45,7 +54,10 @@ break;
 break;
 
 case 'log_in':
-        include_once ('view/user_login_session.php');
+include_once ('view/user_login_session.php');
+// $message="Invalid Email";
+
+        
 break;
 
         case 'add_user':
@@ -123,8 +135,22 @@ break;
 
 
 case 'validate_email':
+if(count($_POST)>0) {
+$conn = mysql_connect("localhost","root","");
+mysql_select_db("littlebirddb", $conn);
+$result = mysql_query("SELECT * FROM users WHERE Email='" . $_POST["Email"] . "' and Password = '". $_POST["Password"]."'");
+if (mysql_error()) {
+    die(mysql_error());
+}
+$row  = mysql_fetch_array($result);
+if(is_array($row)) {
+$_SESSION["First_Name"] = $row['First_Name'];
+$_SESSION["Email"] = $row['Email'];
+$_SESSION["Password"] = $row['Password'];
+$_SESSION["Level"] = $row['Level'];
 
-
+}
+}
     $email = $_POST['Email'];
     $password = $_POST['Password'];
     $cat = valid_email($email, $password);
@@ -141,17 +167,65 @@ break;
 
 case 'go_to_home':
 
-    include('home_user.php');
+if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'A')){
+       include('home_admin.php');
+        }
+        if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'B')){
+       include('home_admin_B.php');
+        }
+        if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'M')){
+       include('home_user.php');
+        }
+        else {
+        }
+
+
+    
 
 
 break;   
 
 case 'go_to_home_admin':
+    
+    if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'A')){
+       include('home_admin.php');
+        }
+        if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'B')){
+       include('home_admin_B.php');
+        }
+        if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'M')){
+       include('home_user.php');
+        }
+        else {
+            // include_once ('home.php');
+        }
 
-    include('home_admin.php');
+
+    
 
 
 break; 
+
+case 'go_to_home_admin_B':
+    
+    if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'A')){
+       include('home_admin.php');
+        }
+        if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'B')){
+       include('home_admin_B.php');
+        }
+        if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'M')){
+       include('home_user.php');
+        }
+        else {
+            // include_once ('home.php');
+        }
+
+
+    
+
+
+break;
  
 
 
@@ -189,6 +263,54 @@ $products = update_products($productID, $plantname, $description, $size, $instoc
 // include('view/user_search.php');
 
 break; 
+
+case 'update_products_B':
+    $productID = filter_input(INPUT_POST, 'ProductID');
+    $plantname = filter_input(INPUT_POST, 'Plant_Name');
+    $description = filter_input(INPUT_POST, 'Description');
+    $size = filter_input(INPUT_POST, 'Size');
+    $instock = filter_input(INPUT_POST, 'In_Stock');
+    
+    
+
+$products = update_products_B($productID, $plantname, $description, $size, $instock);
+
+    include('update_B.php');
+
+
+
+// include('view/user_search.php');
+
+break; 
+
+case 'add':
+
+        $product_key = filter_input(INPUT_POST, 'productkey');
+        $item_qty = filter_input(INPUT_POST, 'itemqty');
+        add_item($product_key, $item_qty);
+        include('cart.php');
+        break;
+    case 'update':
+    
+        $new_qty_list = filter_input(INPUT_POST, 'newqty', FILTER_DEFAULT, 
+                                     FILTER_REQUIRE_ARRAY);
+        foreach($new_qty_list as $key => $qty) {
+            if ($_SESSION['cart'][$key]['qty'] != $qty) {
+                update_item($key, $qty);
+            }
+        }
+        include('cart.php');
+        break;
+    case 'show_cart':
+        include('cart.php');
+        break;
+    case 'show_add_item':
+        include('view/add_item.php');
+        break;
+    case 'empty_cart':
+        unset($_SESSION['cart']);
+        include('cart.php');
+        break;
 
 
 }    

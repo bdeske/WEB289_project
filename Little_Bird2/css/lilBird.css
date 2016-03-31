@@ -272,32 +272,19 @@ display: inline-block;
 	padding-bottom: 10px;
 }
 
-#login
+/*#login*/
 	
-#submit {
-	margin-top: 0;
+.submit {
+	margin-top: 10px;
 	font-weight: bold;
 	background-color: #aaf;
 	border: 1px solid #000;
 	border-radius: 3px;
 	cursor: pointer;
+	padding: 5px;
 	}
 	
-/*article {
-	background-color: rgba(255, 165, 165, .50);
-	border: 1px solid #000;
-	border-radius: 5px;
-	float: left;
-	width: 45%;
-	padding: 50px;
-	margin-top: 50px;
-	box-sizing: border-box;
-	}
-	
-article  img{
-	margin: 0 auto;
-	float: left;
-	}*/
+
 	
 .caption {
 	margin-top: 25px;
@@ -368,7 +355,7 @@ footer {
     width: 15em;
 }
 #aligned .message {
-    margin-left: .5em;
+    margin-left: 25px;
     width: 15em;
 }
 
@@ -388,4 +375,24 @@ text-align: center;
 width: 100%;
 }
 	
+
+#cart_header th {
+    border-bottom: 2px solid black;
+}
+#cart_footer td {
+    text-align: right;
+    border-top: 2px solid black;
+}
+/* the styles for the classes */
+.right {
+    text-align: right;
+}
+.left {
+    text-align: left;
+}
+
+.cart_qty {
+    text-align: right;
+    width: 3em;
+}
 

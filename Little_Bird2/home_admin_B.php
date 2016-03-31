@@ -1,11 +1,9 @@
-
-
 <main>
 
 	<ul id="navbar">
 		<li><a class="here" href="#">Home</a></li>
 		<li><a href="?action=list_products">View Products</a></li>
-		<li><a href="?action=update_products">Update Products</a></li>
+		<li><a href="?action=update_products_B">Update Products</a></li>
 	</ul>
 
 

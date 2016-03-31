@@ -45,10 +45,7 @@ if($_SESSION["First_Name"]) {
         <input type="text" name="Size"><br>
 
         <label>In Stock:</label>
-        <input type="text" name="In_Stock" ><br>
-		
-		<label>Price:</label>
-        <input type="decimal" name="Price"><br>		
+        <input type="text" name="In_Stock" ><br>		
 	
 		<input class="submit" type="submit" value="Update Product" /><br>
 		</form>

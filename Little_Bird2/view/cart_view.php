@@ -1,36 +1,5 @@
-<main>
-
-	<ul id="navbar">
-		<li><a href="?action=go_to_home">Home</a></li>
-		<li><a href="?action=list_products_user">View Products</a></li>
-		<li><a class="here" href="#">Go to Cart</a></li>
-	</ul>
-
-	<ul id="navbar2">
-		<li><?php
-
-         if (!isset($_SESSION["Level"]) == 'A'){
-        }
-        if (!isset($_SESSION["Level"]) == 'B'){
-        }
-        if (!isset($_SESSION["Level"]) == 'M'){
-        }
-        else {
-            header('login_error.php');
-        }
- 
-?>
-<a href="?action=log_out" tite="Logout">Logout <?php echo $_SESSION["First_Name"]; ?></a>
-
-		
-	</ul><br>
-
-
-
-<main>
-        <h1>Your Cart</h1>
-        <?php if (empty($_SESSION['cart']) || 
-                  count($_SESSION['cart']) == 0) : ?>
+ <?php if (empty($_SESSION['cart12']) || 
+                  count($_SESSION['cart12']) == 0) : ?>
             <p>There are no items in your cart.</p>
         <?php else: ?>
             <form action="." method="post">
@@ -43,14 +12,13 @@
                     <th class="right">Item Total</th>
                 </tr>
 
-            <?php foreach( $_SESSION['cart'] as $key => $item ) :
-                $cost  = number_format($item['Price'],  2);
+            <?php foreach( $_SESSION['cart12'] as $key => $item ) :
+                $cost  = number_format($item['cost'],  2);
                 $total = number_format($item['total'], 2);
-                $name = ($item['Plant_Name']);
             ?>
                 <tr>
                     <td>
-                        <?php echo $name; ?>
+                        <?php echo $item['name']; ?>
                     </td>
                     <td class="right">
                         $<?php echo $cost; ?>
@@ -71,7 +39,7 @@
                 </tr>
                 <tr>
                     <td colspan="4" class="right">
-                        <input class="submit" type="submit" value="Update Cart">
+                        <input type="submit" value="Update Cart">
                     </td>
                 </tr>
             </table>
@@ -82,4 +50,3 @@
         <?php endif; ?>
         <p><a href=".?action=show_add_item">Add Item</a></p>
         <p><a href=".?action=empty_cart">Empty Cart</a></p>
-    </main>

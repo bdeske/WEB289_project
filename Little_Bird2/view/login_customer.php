@@ -8,6 +8,12 @@
 	</ul>
 
 
+<ul id="navbar2">
+		<li><a href="?action=sign_up">Sign Up</a></li>
+		<li><a href="?action=log_in">Login</a></li>
+		
+	</ul>
+
 
 
 <form id="formval" action="." method="post" id="aligned">
@@ -37,12 +43,8 @@
 
         <label>Password:</label>
 		<input type="text" name="Password" required="required"><br>
-
-		<!-- <label>Level:</label>
-		<input type="text" name="Level" ><br> -->
-		
-		
-		<input type="submit" value="Add User" /><br>
+	
+		<input class="submit" type="submit" value="Add User" /><br>
 		</form>
 		
        
