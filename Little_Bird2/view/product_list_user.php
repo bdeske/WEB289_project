@@ -8,9 +8,12 @@
 
     <ul id="navbar2">
         <li><?php
+        if (!isset($_SESSION["Level"])){
+        header('Location:view/login_error.php');
+        }
 if($_SESSION["First_Name"]) {
 ?>
-<a href="?action=log_out" tite="Logout">Logout <?php echo $_SESSION["First_Name"]; ?></a>
+<a href="?action=logout" tite="Logout">Logout <?php echo $_SESSION["First_Name"]; ?></a>
 <?php
 }
 ?>
@@ -18,7 +21,16 @@ if($_SESSION["First_Name"]) {
     </ul><br>
     <h1>Product List</h1>
 
+     <h2>Plant Search</h2>
     
+    <!-- display a search form -->
+    <form action="." method="post">
+        <input type="hidden" name="action" value="display_product">
+       <label>Plant Name:</label>
+       <input type="text" name="Plant_Name"
+       value="<?php echo htmlspecialchars($plantname); ?>">
+       <input type="submit" value="Search">
+    </form>
 
     <!-- display a table of products -->
     <table>
@@ -43,6 +55,6 @@ if($_SESSION["First_Name"]) {
         </tr>
         <?php endforeach; ?>
     </table>
-    <!-- <p><a href="?action=show_add_form">Add Product</a></p> -->
+    
 
 </main>

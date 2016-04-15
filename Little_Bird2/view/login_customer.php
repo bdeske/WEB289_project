@@ -4,7 +4,7 @@
 
 	<ul id="navbar">
 		<li><a href="?action=home">Home</a></li>
-		<li><a href="?action=list_products_home">View Products</a></li>
+		<li><a href="?action=listproducts">View Products</a></li>
 	</ul>
 
 

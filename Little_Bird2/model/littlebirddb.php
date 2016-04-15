@@ -10,6 +10,20 @@ function get_products() {
     return $products;
 }
 
+function get_product_by_Plant_Name($plantname) {
+    global $db;
+
+    $query = 'SELECT ProductID, Plant_Name, Description, Size, In_Stock, Price
+    FROM products
+                WHERE Plant_Name = :Plant_Name
+                ORDER BY Plant_Name';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':Plant_Name', $plantname);
+    $statement->execute();
+    $products = $statement->fetchAll();
+    $statement->closeCursor();
+    return $products;
+}
 
 function add_user($fName, $lName, $email, $address, $city, $stateID, $zipCode, $password) {
 
@@ -93,11 +107,7 @@ function level($cat) {
 
     echo "Invalid Email";}
 }
-// if ($userLevels == "A") {
-//     echo "Welcome " . $email . " you are logged in as Admin";
-//     } elseif($userLevels == "M") {
-//     echo "Welcome " . $email . " you are logged in as Member";
-//     } else echo "Invalid Email"
+
 
 // function get_customer_by_email($email) {
 //     global $db;
@@ -127,17 +137,7 @@ function level($cat) {
 //     return $products;
 // }
 
-// function get_product($product_code) {
-//     global $db;
-//     $query = 'SELECT * FROM products
-//               WHERE productCode = :product_code';
-//     $statement = $db->prepare($query);
-//     $statement->bindValue(':product_code', $product_code);
-//     $statement->execute();
-//     $product = $statement->fetch();
-//     $statement->closeCursor();
-//     return $product;
-// }
+
 
 // function delete_product($product_code) {
 //     global $db;
@@ -149,55 +149,80 @@ function level($cat) {
 //     $statement->closeCursor();
 // }
 
+function insert_product($productID, $catID, $plantname, $description, $size, $instock, $price) {
 
-
-function update_products($productID, $plantname, $description, $size, $instock, $price) {
     global $db;
-    $query = 'UPDATE products
-              SET Plant_Name = :Plant_Name,
-                  Description = :Description,
-                  Size = :Size
-                  In_Stock = :In_Stock,
-                  Price = :Price
-              WHERE ProductID = :ProductID';
+    $query = 'INSERT INTO products
+                 (ProductID, CatID, Plant_Name, Description, Size, In_Stock, Price)
+              VALUES
+                 (:ProductID, :CatID,:Plant_Name, :Description, :Size, :In_Stock, :Price)';
     $statement = $db->prepare($query);
     $statement->bindValue(':ProductID', $productID);
+    $statement->bindValue(':CatID', $catID);
     $statement->bindValue(':Plant_Name', $plantname);
     $statement->bindValue(':Description', $description);
     $statement->bindValue(':Size', $size);
     $statement->bindValue(':In_Stock', $instock);
     $statement->bindValue(':Price', $price);
     $statement->execute();
-    $products = $statement->fetch();
     $statement->closeCursor();
-    return $products;
+    
 }
 
+function insert_product_B($productID, $catID, $plantname, $description, $size, $instock) {
 
-function update_products_B($productID, $plantname, $description, $size, $instock) {
     global $db;
-    $query = 'UPDATE products
-              SET Plant_Name = :Plant_Name,
-                  Description = :Description,
-                  Size = :Size,
-                  In_Stock = :In_Stock
-              WHERE ProductID = :ProductID';
+    $query = 'INSERT INTO products
+                 (ProductID, CatID, Plant_Name, Description, Size, In_Stock)
+              VALUES
+                 (:ProductID, :CatID,:Plant_Name, :Description, :Size, :In_Stock)';
     $statement = $db->prepare($query);
     $statement->bindValue(':ProductID', $productID);
+    $statement->bindValue(':CatID', $catID);
     $statement->bindValue(':Plant_Name', $plantname);
     $statement->bindValue(':Description', $description);
     $statement->bindValue(':Size', $size);
     $statement->bindValue(':In_Stock', $instock);
     $statement->execute();
-    $products = $statement->fetch();
     $statement->closeCursor();
-    return $products;
+    
+}
+
+
+function update_products($productID, $price) {
+    global $db;
+    $query = 'UPDATE products
+              SET 
+                  Price = :Price
+                  WHERE ProductID = :ProductID';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':ProductID', $productID);
+    $statement->bindValue(':Price', $price);
+    $statement->execute();
+    $statement->closeCursor();
+    
+}
+
+
+function update_products_B($productID, $size, $instock) {
+    global $db;
+    $query = 'UPDATE products
+              SET Size = :Size,
+                  In_Stock = :In_Stock
+                  WHERE ProductID = :ProductID';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':ProductID', $productID);
+    $statement->bindValue(':Size', $size);
+    $statement->bindValue(':In_Stock', $instock);
+    $statement->execute();
+    $statement->closeCursor();
+    
 }
 
 // Get cart subtotal
 function get_subtotal() {
     $subtotal = 0;
-    foreach ($_SESSION['cart12'] as $item) {
+    foreach ($_SESSION['cart'] as $item) {
         $subtotal += $item['total'];
     }
     $subtotal_f = number_format($subtotal, 2);

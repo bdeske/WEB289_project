@@ -10,9 +10,14 @@
 
 	<ul id="navbar2">
 		<li><?php
+		if (!isset($_SESSION["Level"])){
+		header('Location:view/login_error.php');
+
+
+        }
 if($_SESSION["First_Name"]) {
 ?>
-<a href="?action=log_out" tite="Logout">Logout <?php echo $_SESSION["First_Name"]; ?></a>
+<a href="?action=logout" tite="Logout">Logout <?php echo $_SESSION["First_Name"]; ?></a>
 <?php
 }
 ?>

@@ -48,5 +48,5 @@ if($_SESSION["First_Name"]) {
             <label>&nbsp;</label>
             <input class="submit" type="submit" value="Add Item">
         </form>
-        <p><a href=".?action=show_cart">View Cart</a></p>    
+        <p><a class="insert" href=".?action=show_cart">View Cart</a></p>    
     </main>

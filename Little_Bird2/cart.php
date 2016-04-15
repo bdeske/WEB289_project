@@ -8,20 +8,17 @@
 
 	<ul id="navbar2">
 		<li><?php
+        if (!isset($_SESSION["Level"])){
+        header('Location:view/login_error.php');
 
-         if (!isset($_SESSION["Level"]) == 'A'){
+
         }
-        if (!isset($_SESSION["Level"]) == 'B'){
-        }
-        if (!isset($_SESSION["Level"]) == 'M'){
-        }
-        else {
-            header('login_error.php');
-        }
- 
+ if($_SESSION["First_Name"]) {
 ?>
-<a href="?action=log_out" tite="Logout">Logout <?php echo $_SESSION["First_Name"]; ?></a>
-
+<a href="?action=logout" tite="Logout">Logout <?php echo $_SESSION["First_Name"]; ?></a>
+<?php
+}
+?>
 		
 	</ul><br>
 
@@ -31,7 +28,7 @@
         <h1>Your Cart</h1>
         <?php if (empty($_SESSION['cart']) || 
                   count($_SESSION['cart']) == 0) : ?>
-            <p>There are no items in your cart.</p>
+            <p>There are no items in your cart.</p><br>
         <?php else: ?>
             <form action="." method="post">
             <input type="hidden" name="action" value="update">
@@ -75,11 +72,11 @@
                     </td>
                 </tr>
             </table>
-            <p>Click "Update Cart" to update quantities in your
+            <h2>Click "Update Cart" to update quantities in your
                 cart. Enter a quantity of 0 to remove an item.
-            </p>
-            </form>
+            </h2>
+            </form><br>
         <?php endif; ?>
-        <p><a href=".?action=show_add_item">Add Item</a></p>
-        <p><a href=".?action=empty_cart">Empty Cart</a></p>
+        <p><a class="insert" href=".?action=show_add_item">Add Item</a></p><br>
+        <p><a class="insert" href=".?action=empty_cart">Empty Cart</a></p>
     </main>

@@ -1,15 +1,29 @@
 <main>
-    <ul id="navbar">
-        <li><a href="?action=home">Home</a></li>
-        <li><a  class="here" href="#">View Products</a></li>
-        
+     <ul id="navbar">
+        <li><a href="?action=go_to_home_admin_B">Home</a></li>
+        <li><a class="here" href="#">View Products</a></li>
+        <li><a href="?action=update_products_B">Update Products</a></li>
+        <li><a href="?action=insert_product_B">Insert Products</a></li>
     </ul>
 
     <ul id="navbar2">
-        <li><a href="?action=sign_up">Sign Up</a></li>
-        <li><a href="?action=log_in">Login</a></li>
+        <li><?php
+        if (!isset($_SESSION["Level"])){
+        header('Location:view/login_error.php');
+
+
+        }
+ if($_SESSION["First_Name"]) {
+?>
+<a href="?action=logout" tite="Logout">Logout <?php echo $_SESSION["First_Name"]; ?></a>
+<?php
+}
+?>
         
-    </ul>
+    </ul><br>
+
+
+
 
     <h1>Product List</h1>
 
@@ -38,7 +52,7 @@
         </tr>
         <?php endforeach; ?>
     </table>
-    <!-- <p><a href="?action=show_add_form">Add Product</a></p> -->
+    
 
 </main>
 

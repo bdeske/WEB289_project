@@ -5,7 +5,7 @@
 
 <ul id="navbar">
 		<li><a href="?action=home">Home</a></li>
-		
+		<li><a href="?action=listproducts">View Products</a></li>
 	</ul>
 
 	<ul id="navbar2">
@@ -17,7 +17,7 @@
 	
 <form name="frmUser" method="post" action="">
 <input type="hidden" name="action" value="validate_email">
-<!-- <div class="message"><?php if($message!="") { echo $message; } ?></div> -->
+
 <table border="0" cellpadding="10" cellspacing="1" width="500" align="center">
 <tr class="tableheader">
 <td align="center" colspan="2">Enter Login Details</td>

@@ -31,6 +31,8 @@ if ($action === NULL) {
 
 $lName = '';
 $users = array();
+$plantname = '';
+$products = array();
 
 
 switch( $action ) {
@@ -49,13 +51,24 @@ switch( $action ) {
         }
 break;
 
+
+
+
+case 'logout':
+
+    
+    include('view/logout.php');
+break;
+
+
     case 'sign_up':
         include_once ('view/login_customer.php');
 break;
 
 case 'log_in':
+
 include_once ('view/user_login_session.php');
-// $message="Invalid Email";
+
 
         
 break;
@@ -81,7 +94,21 @@ add_user($fName, $lName, $email, $address, $city, $stateID, $zipCode, $password,
     include_once ('view/user_login_session.php');
 break;
 
+case 'listproducts': 
+    // Get product data
+    $products = get_products();
 
+    // Display the product list
+    include('view/productlist.php');
+break; 
+
+case 'display_product': 
+    // Get product data
+    $products = get_product_by_Plant_Name($plantname);
+
+    // Display the product list
+    include('view/product_list_user.php');
+break;
 
 case 'list_products': 
     // Get product data
@@ -99,6 +126,7 @@ case 'list_products_home':
     // Display the product list
     include('view/product_list_home.php');
 break; 
+
 
 
 case 'list_products_user':
@@ -136,8 +164,8 @@ break;
 
 case 'validate_email':
 if(count($_POST)>0) {
-$conn = mysql_connect("localhost","root","");
-mysql_select_db("littlebirddb", $conn);
+$conn = mysql_connect("mysql4.000webhost.com","a8935893_doe","roseanne54");
+mysql_select_db("a8935893_dodie", $conn);
 $result = mysql_query("SELECT * FROM users WHERE Email='" . $_POST["Email"] . "' and Password = '". $_POST["Password"]."'");
 if (mysql_error()) {
     die(mysql_error());
@@ -197,7 +225,7 @@ case 'go_to_home_admin':
        include('home_user.php');
         }
         else {
-            // include_once ('home.php');
+            
         }
 
 
@@ -231,22 +259,34 @@ break;
 
 case 'go_to_cart':
 
-    include('cart.php');
 
-break; 
 
-case 'log_out':
+         if (!isset($_SESSION["Level"]) == 'A'){
+            echo "a";
+        }
+        if (!isset($_SESSION["Level"]) == 'B'){
+             echo "b";
+        }
+        if (!isset($_SESSION["Level"]) == 'M'){
+             echo "m";
+            
+        }
+        else {
+            header('view/login_error.php');
+        }
+
+include('cart.php');
 
     
 
-    include('view/logout.php');
-
-
 break; 
 
+ 
 
-case 'update_products':
+case 'insert_product':
+
     $productID = filter_input(INPUT_POST, 'ProductID');
+    $catID = filter_input(INPUT_POST, 'CatID');
     $plantname = filter_input(INPUT_POST, 'Plant_Name');
     $description = filter_input(INPUT_POST, 'Description');
     $size = filter_input(INPUT_POST, 'Size');
@@ -254,7 +294,44 @@ case 'update_products':
     $price = filter_input(INPUT_POST, 'Price');
     
 
-$products = update_products($productID, $plantname, $description, $size, $instock, $price);
+$products = insert_product($productID, $catID, $plantname, $description, $size, $instock, $price);
+
+    include('view/insert_product.php');
+
+
+
+
+
+break; 
+
+case 'insert_product_B':
+
+    $productID = filter_input(INPUT_POST, 'ProductID');
+    $catID = filter_input(INPUT_POST, 'CatID');
+    $plantname = filter_input(INPUT_POST, 'Plant_Name');
+    $description = filter_input(INPUT_POST, 'Description');
+    $size = filter_input(INPUT_POST, 'Size');
+    $instock = filter_input(INPUT_POST, 'In_Stock');
+    
+
+$products = insert_product_B($productID, $catID, $plantname, $description, $size, $instock);
+
+    include('view/insert_product_B.php');
+
+
+
+
+
+break; 
+
+
+case 'update_products':
+    $products = get_products();
+    $productID = filter_input(INPUT_POST, 'ProductID');
+    $price = filter_input(INPUT_POST, 'Price');
+    
+
+$products = update_products($productID, $price);
 
     include('update.php');
 
@@ -265,15 +342,15 @@ $products = update_products($productID, $plantname, $description, $size, $instoc
 break; 
 
 case 'update_products_B':
+
+    $products = get_products();
     $productID = filter_input(INPUT_POST, 'ProductID');
-    $plantname = filter_input(INPUT_POST, 'Plant_Name');
-    $description = filter_input(INPUT_POST, 'Description');
     $size = filter_input(INPUT_POST, 'Size');
     $instock = filter_input(INPUT_POST, 'In_Stock');
     
     
 
-$products = update_products_B($productID, $plantname, $description, $size, $instock);
+$products = update_products_B($productID, $size, $instock);
 
     include('update_B.php');
 
@@ -312,8 +389,16 @@ case 'add':
         include('cart.php');
         break;
 
+    case '404':
+        include('view/404.php');
+        break;
 
-}    
+ }   
+
+// if ($action != NULL) {
+//     include('view/404.php');
+//     }
+
 // useful code????
 
 
