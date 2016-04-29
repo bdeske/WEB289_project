@@ -1,0 +1,52 @@
+Folder PATH listing for volume Windows8_OS
+Volume serial number is 5E92-AE60
+C:.
+|   cart.php
+|   home.php
+|   home_admin.php
+|   home_admin_B.php
+|   home_user.php
+|   index.php
+|   update.php
+|   update_B.php
+|   wireframe.txt
+|   
++---css
+|       lilBird.css
+|       medium.css
+|       small.css
+|       
++---images
+|       20140730_112110.jpg
+|       Bark-BG.jpg
+|       BeeFlower.png
+|       KaushanScript-Regular.otf
+|       Lil-Bird-Masthead.png
+|       
++---model
+|       a8935893_dodie.sql
+|       database_db.php
+|       database_error.php
+|       littlebirddb.php
+|       
+\---view
+        404.php
+        add_item.php
+        captcha_code.php
+        footer.php
+        header.php
+        insert_product.php
+        insert_product_A.php
+        insert_product_B.php
+        login_customer.php
+        login_error.php
+        logout.php
+        productlist.php
+        product_list.php
+        product_list_A.php
+        product_list_home.php
+        product_list_user.php
+        user_display.php
+        user_login.php
+        user_login_session.php
+        

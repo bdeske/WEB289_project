@@ -9,9 +9,9 @@ session_set_cookie_params($lifetime, '/');
 
 
 
-if(isset($_SESSION["First_Name"])) {
-// header("Location:view/user_dashboard.php");
-}
+// // if(isset($_SESSION["First_Name"])) {
+// // // header("Location:view/user_dashboard.php");
+// }
 // Create a cart array if needed
 
  if (empty($_SESSION['cart'])) { $_SESSION['cart'] = array(); }
@@ -54,9 +54,8 @@ break;
 
 
 
-case 'logout':
+    case 'logout':
 
-    
     include('view/logout.php');
 break;
 
@@ -65,15 +64,13 @@ break;
         include_once ('view/login_customer.php');
 break;
 
-case 'log_in':
+    case 'log_in':
 
 include_once ('view/user_login_session.php');
-
-
         
 break;
 
-        case 'add_user':
+    case 'add_user':
         
     // Add User
    
@@ -81,119 +78,109 @@ break;
     $fName = filter_input(INPUT_POST, 'First_Name');
     $lName = filter_input(INPUT_POST, 'Last_Name');
     $email = filter_input(INPUT_POST, 'Email');
-    $address = filter_input(INPUT_POST, 'Address');
-    $city = filter_input(INPUT_POST, 'City');
-    $stateID = filter_input(INPUT_POST, 'StateID');
-    $zipCode = filter_input(INPUT_POST, 'Zip_Code');
     $password = filter_input(INPUT_POST, 'Password');
-    $level = filter_input(INPUT_POST, 'Level'); 
+   
     
-add_user($fName, $lName, $email, $address, $city, $stateID, $zipCode, $password, $level);
+add_user($fName, $lName, $email, $password);
     // // Display the user list
 
     include_once ('view/user_login_session.php');
+
 break;
 
-case 'listproducts': 
+    case 'listproducts': 
     // Get product data
     $products = get_products();
 
     // Display the product list
     include('view/productlist.php');
+
 break; 
 
-case 'display_product': 
+    case 'display_product': 
     // Get product data
+    $plantname = filter_input(INPUT_POST, 'Plant_Name');
     $products = get_product_by_Plant_Name($plantname);
 
     // Display the product list
     include('view/product_list_user.php');
+
 break;
 
-case 'list_products': 
+    case 'list_products': 
     // Get product data
     $products = get_products();
 
     // Display the product list
     include('view/product_list.php');
+
 break; 
 
 
-case 'list_products_home': 
+    case 'list_products_home': 
     // Get product data
     $products = get_products();
 
     // Display the product list
     include('view/product_list_home.php');
+
 break; 
 
 
 
-case 'list_products_user':
+    case 'list_products_user':
 
     $products = get_products();
     include('view/product_list_user.php');
 
-
 break; 
 
 
-case 'display_users': 
+    case 'display_users': 
     // show list of users
     $users = get_users();
 
     // Display the user list
     include('view/user_display.php');
-break; 
 
-case 'search_users': 
-if ($action == 'show_users') {
-    $lName = filter_input(INPUT_POST, 'Last_Name');
-    if (empty($lName)) {
-        $message = 'You must enter a last name.';
-    } else {
-        $users = get_users_by_last_name($lName);
-        echo $last_name;
-        include('view/user_search.php');
-    }
-}
- 
-    
-break; 
+break;  
 
 
-case 'validate_email':
-if(count($_POST)>0) {
-$conn = mysql_connect("mysql4.000webhost.com","a8935893_doe","roseanne54");
-mysql_select_db("a8935893_dodie", $conn);
-$result = mysql_query("SELECT * FROM users WHERE Email='" . $_POST["Email"] . "' and Password = '". $_POST["Password"]."'");
-if (mysql_error()) {
-    die(mysql_error());
-}
-$row  = mysql_fetch_array($result);
-if(is_array($row)) {
-$_SESSION["First_Name"] = $row['First_Name'];
-$_SESSION["Email"] = $row['Email'];
-$_SESSION["Password"] = $row['Password'];
-$_SESSION["Level"] = $row['Level'];
+    case 'validate_email':
 
-}
-}
+//if(count($_POST)>0) {
+//$conn = mysql_connect("mysql4.000webhost.com","a8935893_doe","roseanne54");
+//mysql_select_db("a8935893_dodie", $conn); 
+//   
+//$result = mysql_query("SELECT * FROM users WHERE Email='" . $_POST["Email"] . "' and Password = '". hash('sha256', $_POST["Password"])."'");
+//
+//$row  = mysql_fetch_array($result);
+//if(is_array($row)) {
+//$_SESSION["First_Name"] = $row['First_Name'];
+//$_SESSION["Email"] = $row['Email'];
+//$_SESSION["Password"] = $row['Password'];
+//$_SESSION["Level"] = 'A';
+//echo $_SESSION["Level"];
+//    } 
+//}
+
     $email = $_POST['Email'];
     $password = $_POST['Password'];
+    
     $cat = valid_email($email, $password);
     if(isset($cat)) {
+        
+        $_SESSION["First_Name"] = $cat['First_Name'];
+$_SESSION["Email"] = $cat['Email'];
+$_SESSION["Password"] = $cat['Password'];
+$_SESSION["Level"] = $cat['Level'];
         level($cat);
     } else "Not Working";
-
-
-
-
 
 break;   
 
 
-case 'go_to_home':
+    case 'go_to_home':
 
 if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'A')){
        include('home_admin.php');
@@ -207,13 +194,10 @@ if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'A')){
         else {
         }
 
-
-    
-
-
 break;   
 
-case 'go_to_home_admin':
+
+    case 'go_to_home_admin':
     
     if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'A')){
        include('home_admin.php');
@@ -228,13 +212,10 @@ case 'go_to_home_admin':
             
         }
 
-
-    
-
-
 break; 
 
-case 'go_to_home_admin_B':
+
+    case 'go_to_home_admin_B':
     
     if (isset($_SESSION["First_Name"]) && ($_SESSION["Level"] == 'A')){
        include('home_admin.php');
@@ -249,41 +230,18 @@ case 'go_to_home_admin_B':
             // include_once ('home.php');
         }
 
-
-    
-
-
 break;
  
 
-
-case 'go_to_cart':
-
-
-
-         if (!isset($_SESSION["Level"]) == 'A'){
-            echo "a";
-        }
-        if (!isset($_SESSION["Level"]) == 'B'){
-             echo "b";
-        }
-        if (!isset($_SESSION["Level"]) == 'M'){
-             echo "m";
-            
-        }
-        else {
-            header('view/login_error.php');
-        }
+    case 'go_to_cart':
 
 include('cart.php');
-
-    
 
 break; 
 
  
 
-case 'insert_product':
+    case 'insert_product':
 
     $productID = filter_input(INPUT_POST, 'ProductID');
     $catID = filter_input(INPUT_POST, 'CatID');
@@ -298,13 +256,10 @@ $products = insert_product($productID, $catID, $plantname, $description, $size, 
 
     include('view/insert_product.php');
 
-
-
-
-
 break; 
 
-case 'insert_product_B':
+
+    case 'insert_product_B':
 
     $productID = filter_input(INPUT_POST, 'ProductID');
     $catID = filter_input(INPUT_POST, 'CatID');
@@ -318,14 +273,10 @@ $products = insert_product_B($productID, $catID, $plantname, $description, $size
 
     include('view/insert_product_B.php');
 
-
-
-
-
 break; 
 
 
-case 'update_products':
+    case 'update_products':
     $products = get_products();
     $productID = filter_input(INPUT_POST, 'ProductID');
     $price = filter_input(INPUT_POST, 'Price');
@@ -335,13 +286,10 @@ $products = update_products($productID, $price);
 
     include('update.php');
 
-
-
-// include('view/user_search.php');
-
 break; 
 
-case 'update_products_B':
+
+    case 'update_products_B':
 
     $products = get_products();
     $productID = filter_input(INPUT_POST, 'ProductID');
@@ -354,13 +302,10 @@ $products = update_products_B($productID, $size, $instock);
 
     include('update_B.php');
 
-
-
-// include('view/user_search.php');
-
 break; 
 
-case 'add':
+
+    case 'add':
 
         $product_key = filter_input(INPUT_POST, 'productkey');
         $item_qty = filter_input(INPUT_POST, 'itemqty');
@@ -395,68 +340,11 @@ case 'add':
 
  }   
 
-// if ($action != NULL) {
-//     include('view/404.php');
+// if ($action == FALSE) {
+//     header('location: view/404.php');
 //     }
 
-// useful code????
 
-
-    // if (empty($lName)) {
-    //     $message = 'You must enter a last name.';
-    // } else {
-    //     $customers = get_customers_by_last_name($lName);
-    //     //echo $last_name;get_users_by_last_name($lName)
-    // }
-
-
-
-
-
-
-    // Display the user list
-    // include('view/user_search.php');
-
- 
-
-
-// } else if ($action == 'show_add_form'){
-	
-//     $userID = filter_input(INPUT_POST, 'UserId');
-//     $fName = filter_input(INPUT_POST, 'First_Name');
-//     $lName = filter_input(INPUT_POST, 'Last_Name');
-//     $email = filter_input(INPUT_POST, 'Email');
-//     $address = filter_input(INPUT_POST, 'Address');
-//     $city = filter_input(INPUT_POST, 'City');
-//     $stateID = filter_input(INPUT_POST, 'State');
-//     $zipCode = filter_input(INPUT_POST, 'Zip_Code');
-//     $password = filter_input(INPUT_POST, 'Password');
-//     $level = filter_input(INPUT_POST, 'Level');
-    
-// 	// 
-// 	include('../../view/user_display.php');add_user($userID, $fName, $lName, $email, $address, $city, $stateID, $zipCode, $password, $level);
-    // else if ($action == 'delete_product') {
-//     $productID = filter_input(INPUT_POST, 'productID');
-//     delete_product($product_code);
-//     header("Location: ."); //return to the same page
-// } else if ($action == 'show_add_form') {
-//     include('product_add.php');
-// } else if ($action == 'add_product') {
-//     $code = filter_input(INPUT_POST, 'code');
-//     $name = filter_input(INPUT_POST, 'name');
-//     $version = filter_input(INPUT_POST, 'version', FILTER_VALIDATE_FLOAT);
-//     $release_date = filter_input(INPUT_POST, 'release_date');
-
-//     // Validate the inputs
-//     if ( $code === NULL || $name === FALSE || 
-//             $version === NULL || $version === FALSE || 
-//             $release_date === NULL) {
-//         $error = "Invalid product data. Check all fields and try again.";
-//         include('../errors/error.php');
-//     } else {
-//         add_product($code, $name, $version, $release_date);
-//         header("Location: .");
-//     }
-// }
 include 'view/footer.php';
 ?>
+<?php exit; ?>

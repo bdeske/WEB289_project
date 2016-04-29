@@ -11,15 +11,12 @@
 le.com/svn/trunk/html5.js">
 </script>
 <! [endif]-->
-<script src="js/jquery-1.11.1.js" type="text/javascript"></script>
-<script src="js/lilbirdcalls.js" type="text/javascript"></script>
-<script src="js/lilbird.js" type="text/javascript"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
-
-<div id="wrap">
-<header>
+<header id="masthead">
 <h1>Little Bird Gardens</h1>
 
 </header>
+<div id="wrap">

@@ -45,7 +45,7 @@ if($_SESSION["First_Name"]) {
             <?php endfor; ?>
             </select><br>
 
-            <label>&nbsp;</label>
+            
             <input class="submit" type="submit" value="Add Item">
         </form>
         <p><a class="insert" href=".?action=show_cart">View Cart</a></p>    

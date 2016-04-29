@@ -1,4 +1,10 @@
 <?php
+
+// 
+// get_products function returns a list of products and populates table in Web site 
+// This function takes no arguments
+// 
+
 function get_products() {
     global $db;
     $query = 'SELECT ProductID, Plant_Name, Description, Size, In_Stock, Price
@@ -10,6 +16,12 @@ function get_products() {
     return $products;
 }
 
+// 
+// get_product_by_Plant_Name is used in the search feature to 
+// return a list of the searched for plant
+// This function takes one argument: the Plant Name variable
+// 
+
 function get_product_by_Plant_Name($plantname) {
     global $db;
 
@@ -20,26 +32,34 @@ function get_product_by_Plant_Name($plantname) {
     $statement = $db->prepare($query);
     $statement->bindValue(':Plant_Name', $plantname);
     $statement->execute();
+    
     $products = $statement->fetchAll();
     $statement->closeCursor();
     return $products;
 }
 
-function add_user($fName, $lName, $email, $address, $city, $stateID, $zipCode, $password) {
+// 
+// add_user function is called when a user enters their information 
+// into the sign up form. Nothing is returned but the data populates the
+// users table
+// This function takes four arguments: the First Name variable
+//                                    the Last Name variable
+//                                    the Email variable
+//                                    the Password variable
+// 
+
+function add_user($fName, $lName, $email, $password) {
 
     global $db;
+    $password = hash('sha256', $password);
     $query = 'INSERT INTO users
-                 (First_Name, Last_Name, Email, Address, City, StateID, Zip_Code, Password)
+                 (First_Name, Last_Name, Email, Password)
               VALUES
-                 (:First_Name, :Last_Name, :Email, :Address, :City, :StateID, :Zip_Code, :Password)';
+                 (:First_Name, :Last_Name, :Email, :Password)';
     $statement = $db->prepare($query);
     $statement->bindValue(':First_Name', $fName);
     $statement->bindValue(':Last_Name', $lName);
     $statement->bindValue(':Email', $email);
-    $statement->bindValue(':Address', $address);
-    $statement->bindValue(':City', $city);
-    $statement->bindValue(':StateID', $stateID);
-    $statement->bindValue(':Zip_Code', $zipCode);
     $statement->bindValue(':Password', $password);
     
     $statement->execute();
@@ -47,50 +67,35 @@ function add_user($fName, $lName, $email, $address, $city, $stateID, $zipCode, $
     
 }
 
-function get_users() {
-    global $db;
-    $query = 'SELECT * 
-    FROM users';
-    $statement = $db->prepare($query);
-    $statement->execute();
-    $users = $statement->fetchAll();
-    $statement->closeCursor();
-    return $users;
-}
+// 
+// valid_email function is called when a user enters their login details 
+// this function does not return data but it does verify the usr email and password
+// This function takes two arguments: the Email variable
+//                                    the Password variable
+//
 
-function get_users_by_last_name($lName) {
-    echo "hfjhah";
-    global $db;
-    $query = 'SELECT First_Name, Last_Name, Email, City
-                FROM users
-                WHERE Last_Name = :Last_Name
-                ORDER BY Last_Name';
-                
-    $statement = $db->prepare($query);
-    $statement->bindValue(':Last_Name', $lName);
-    $statement->execute();
-    $users = $statement->fetch();
-    $statement->closeCursor();
-    return $users;
-}
 
 function valid_email($email, $password) {
-
    global $db;
+   $password2 = hash('sha256', $password);
 $query = 'SELECT *
             FROM users
             WHERE Email = :Email and Password = :Password';
 $statement1 = $db->prepare($query);
 $statement1->bindValue(':Email', $email);
-$statement1->bindValue(':Password', $password);
+$statement1->bindValue(':Password', $password2);
 $statement1->execute();
 $category = $statement1->fetch();
 $statement1->closeCursor();
 return $category;
-
-
-
 }
+
+// 
+// level function is called when a user enters their login details 
+// this function does not return data but it does verify the user level
+// This function takes one arguments: the $cat variable
+// which is the product of the valid_email function
+//
 
 function level($cat) { 
     global $db;
@@ -105,49 +110,20 @@ function level($cat) {
     else {
      include('view/user_login_session.php');
 
-    echo "Invalid Email";}
+    echo "Level Cat error";}
 }
 
-
-// function get_customer_by_email($email) {
-//     global $db;
-//     $query = 'SELECT customerID, firstName, lastName
-//               FROM customers 
-//               WHERE email = :email';
-//     $statement = $db->prepare($query);
-//     echo $query;
-//     $statement->bindValue(':email', $email);
-//     $statement->execute();
-//     $customer = $statement->fetch();
-//     $statement->closeCursor();
-//     return $customer;
-// }
-// function get_products_by_customer($email) {
-//     global $db;
-//     $query = 'SELECT products.productCode, products.name 
-//               FROM products
-//                 INNER JOIN registrations ON products.productCode = registrations.productCode
-//                 INNER JOIN customers ON registrations.customerID = customers.customerID
-//               WHERE customers.email = :email';
-//     $statement = $db->prepare($query);
-//     $statement->bindValue(':email', $email);
-//     $statement->execute();
-//     $products = $statement->fetchAll();
-//     $statement->closeCursor();
-//     return $products;
-// }
-
-
-
-// function delete_product($product_code) {
-//     global $db;
-//     $query = 'DELETE FROM products
-//               WHERE productCode = :product_code';
-//     $statement = $db->prepare($query);
-//     $statement->bindValue(':product_code', $product_code);
-//     $statement->execute();
-//     $statement->closeCursor();
-// }
+// 
+// insert_product function is called when an Admin "A" fills out the insert product form
+// this function does not return data but it does populate the products table
+// This function takes seven arguments: the Product ID variable
+//                                    the CatID variable
+//                                    the Plant_Name variable
+//                                    the Description variable
+//                                    the Size variable
+//                                    the In_Stock variable
+//                                    the Price variable
+//
 
 function insert_product($productID, $catID, $plantname, $description, $size, $instock, $price) {
 
@@ -169,6 +145,18 @@ function insert_product($productID, $catID, $plantname, $description, $size, $in
     
 }
 
+// 
+// insert_product_B function is called when an Admin "B" fills out the insert product form
+// this function does not return data but it does populate the products table
+// This function takes six arguments: the Product ID variable
+//                                    the CatID variable
+//                                    the Plant_Name variable
+//                                    the Description variable
+//                                    the Size variable
+//                                    the In_Stock variable
+//                                    
+//
+
 function insert_product_B($productID, $catID, $plantname, $description, $size, $instock) {
 
     global $db;
@@ -188,6 +176,12 @@ function insert_product_B($productID, $catID, $plantname, $description, $size, $
     
 }
 
+// 
+// update_products function is called when an Admin "A" fills out the update product form
+// this function does not return data but it does update the products table
+// This function takes two arguments: the Product ID variable
+//                                    the Price variable
+//                                    
 
 function update_products($productID, $price) {
     global $db;
@@ -202,6 +196,13 @@ function update_products($productID, $price) {
     $statement->closeCursor();
     
 }
+
+// 
+// update_products_B function is called when an Admin "B" fills out the update product form
+// this function does not return data but it does update the products table
+// This function takes three arguments: the Product ID variable
+//                                    the Size variable
+//                                    the In_Stock variable
 
 
 function update_products_B($productID, $size, $instock) {
@@ -219,7 +220,11 @@ function update_products_B($productID, $size, $instock) {
     
 }
 
-// Get cart subtotal
+//
+// Cart get_subtotal function is called when the cart is created and returns the 
+// subtotal of all items in the cart This function takes no arguments
+// 
+
 function get_subtotal() {
     $subtotal = 0;
     foreach ($_SESSION['cart'] as $item) {
@@ -228,6 +233,10 @@ function get_subtotal() {
     $subtotal_f = number_format($subtotal, 2);
     return $subtotal_f;
 }
+
+//
+// Add item function for cart
+//
 
 function add_item($key, $quantity) {
     global $db;
@@ -240,7 +249,7 @@ function add_item($key, $quantity) {
         return;
     }
 
-    // Add item
+    
     $cost = $products[$key]['Price'];
     $total = $cost * $quantity;
     $item = array(
@@ -251,15 +260,12 @@ function add_item($key, $quantity) {
     );
 
     $_SESSION['cart'][$key] = $item;
-    // $query = 'SELECT Plant_Name, Price
-    // FROM products';
-    // $statement = $db->prepare($query);
-    // $statement->execute();
-    // $item = $statement->fetchAll();
-    // $statement->closeCursor();
-    // return $item;
-    // var_dump($item);
+
 }
+
+//
+// update item function is called When item  quantity is updated in cart
+//
 
 function update_item($key, $quantity) {
     $quantity = (int) $quantity;

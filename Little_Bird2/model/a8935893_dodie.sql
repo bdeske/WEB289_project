@@ -84,7 +84,7 @@ INSERT INTO `products` (`ProductID`, `CatID`, `Plant_Name`, `Description`, `Size
 ('P1', 1, 'Echinecea', 'Beautiful purple daisy like flowers with a bunching habit', '1 Gallon', 48, '12.00'),
 ('P2', 1, 'Shasta Daisy', 'Beautiful White daisy flowers with a great bunching habit', '1 Gallon', 64, '12.00'),
 ('P3', 1, 'Sedum "Autumn Joy"', 'A favorite of the bees in the late season. Beautiful pink to rosy red flower heads with great clumping habit', '1 Gallon', 38, '12.00'),
-('S1', 2, 'Forsythia', '	These are early spring yellow flowering with an open growing habit', '3 Gallon', 35, '40.00'),
+('S1', 2, 'Forsythia', '  These are early spring yellow flowering with an open growing habit', '3 Gallon', 35, '40.00'),
 ('S2', 2, 'Azalea "Delaware Valley White"', 'This variety of Azalea has a nicce tight growth habit with late season white blossoms', '3 Gallon', 42, '45.00'),
 ('S3', 2, 'Leather Leaf Viburnum', 'This member of the viburnum family has a leather look to the foliage with early summer season white blooms turning to red berries in fall.', '5 Gallon', 32, '85.00'),
 ('S4', 2, 'Buddlea "Black Knight"', 'A Butterfly bush with a large growth habit. Bearing dark purple blooms throughout summer.', '3 Gallon', 28, '30.00'),
@@ -201,10 +201,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `First_Name` char(20) DEFAULT NULL,
   `Last_Name` char(20) DEFAULT NULL,
   `Email` varchar(20) DEFAULT NULL,
-  `Address` varchar(20) DEFAULT NULL,
-  `City` char(20) DEFAULT NULL,
-  `StateID` int(11) NOT NULL,
-  `Zip_Code` int(11) DEFAULT NULL,
   `Password` varchar(20) DEFAULT NULL,
   `Level` varchar(1) NOT NULL DEFAULT 'M'
 ) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=latin1;
@@ -213,15 +209,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`UserID`, `First_Name`, `Last_Name`, `Email`, `Address`, `City`, `StateID`, `Zip_Code`, `Password`, `Level`) VALUES
-(2, 'William', 'Deskevich', 'wmd@email.com', '42 astor court', 'Asheville', 4, 28804, 'sgnobod', 'A'),
-(3, 'Thomas', 'Jones', 'TJ@email.com', '1210 jfghjkghajh st', 'asheville', 0, 28804, 'oingoboingo62', 'A'),
-(4, 'Janis', 'Applewood', 'JA@email.com', '1010 everlast rd', 'Asheville', 0, 28804, 'dodiedoe', 'M'),
-(10, 'Tommy', 'Johns', 'tomjon@email.com', '34 Grandview Ave', 'Endicott', 0, 13760, 'sendemhome2354', 'M'),
-(99, 'roger', 'moore', '007@email.com', 'Bond rd', 'shaken town', 21, NULL, '00007', 'M'),
-(114, 'shelton', 'Sneed', 'ss@email.com', 'asdff', 'sgdhfj', 14, NULL, 'sssss', 'M'),
-(115, 'Alec', 'Fehl', 'AF@email.com', '1234 Main St', 'Asheville', 20, NULL, 'alecfehl', 'M'),
-(116, 'Charlie', 'Wallin', 'CW@email.com', '137 Montford Ave', 'Asheville', 20, NULL, 'charliewallin', 'M');
+INSERT INTO `users` (`UserID`, `First_Name`, `Last_Name`, `Email`, `Password`, `Level`) VALUES
+(2, 'William', 'Deskevich', 'wmd@email.com', 'sgnobod', 'A'),
+(3, 'Thomas', 'Jones', 'TJ@email.com', 'oingoboingo62', 'A'),
+(4, 'Alec', 'Fehl', 'AF@email.com', 'alecfehl', 'M'),
+
 
 --
 -- Indexes for dumped tables

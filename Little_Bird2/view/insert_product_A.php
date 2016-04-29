@@ -1,38 +1,29 @@
-
 <main>
     <ul id="navbar">
-        <li><a href="?action=go_to_home">Home</a></li>
+        <li><a href="?action=go_to_home_admin">Home</a></li>
         <li><a class="here" href="#">View Products</a></li>
-        <li><a href="?action=go_to_cart">Go to Cart</a></li>
+        <li><a href="?action=update_products">Update Products</a></li>
+        <li><a href="?action=insert_product">Insert Products</a></li>
     </ul>
 
-    <ul id="navbar2">
+     <ul id="navbar2">
         <li><?php
         if (!isset($_SESSION["Level"])){
         header('Location:view/login_error.php');
+
+
         }
 if($_SESSION["First_Name"]) {
 ?>
-<a href="?action=logout" tite="Logout">Logout <?php echo $_SESSION["First_Name"]; ?></a>
+<a href="?action=log_out" tite="Logout">Logout <?php echo $_SESSION["First_Name"]; ?></a>
 <?php
 }
 ?>
-        
-    </ul><br>
+</ul><br>
     <h1>Product List</h1>
 
-     <h2 id="search">Plant Search</h2>
     
-    <!-- display a search form -->
-<fieldset>
-    <form action="." method="post">
-        <input type="hidden" name="action" value="display_product">
-       <label>Plant Name:</label>
-       <input type="text" name="Plant_Name"
-       value="<?php echo htmlspecialchars($plantname); ?>">
-       <input type="submit" value="Search">
-    </form>
-</fieldset>
+
     <!-- display a table of products -->
     <table>
         <tr>
@@ -56,7 +47,6 @@ if($_SESSION["First_Name"]) {
         </tr>
         <?php endforeach; ?>
     </table>
-    <br>
-    <p><a class="insert" href="?action=list_products_user">Product List</a></p><br>
+    <!-- <p><a href="?action=show_add_form">Add Product</a></p> -->
 
 </main>

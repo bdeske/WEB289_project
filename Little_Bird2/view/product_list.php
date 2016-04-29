@@ -25,7 +25,7 @@ if($_SESSION["First_Name"]) {
     
 
     <!-- display a table of products -->
-    <table>
+    <table >
         <tr>
             
             <th>ProductID</th>

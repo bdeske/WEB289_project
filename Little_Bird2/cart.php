@@ -71,7 +71,7 @@
                         <input class="submit" type="submit" value="Update Cart">
                     </td>
                 </tr>
-            </table>
+            </table><br>
             <h2>Click "Update Cart" to update quantities in your
                 cart. Enter a quantity of 0 to remove an item.
             </h2>

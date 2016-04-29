@@ -34,5 +34,7 @@
 <td align="center" colspan="2"><input class="submit" type="submit" name="submit" value="Submit"></td>
 </tr>
 </table>
-</form>
+</form><br>
+<div class="g-recaptcha" data-sitekey="6LcsAx4TAAAAAEKFZL2mSI9lH92Jf8IjhtswKHpT"></div>
+<br>
 </body>

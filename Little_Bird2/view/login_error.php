@@ -24,12 +24,12 @@ le.com/svn/trunk/html5.js">
 
 </header>
 
-?>
+
 
 <main>
 	<ul id="navbar">
 		<li><a href="../index.php">Home</a></li>
-		<li><a href="../index.php?action=list_products_home">View Products</a></li>
+		<li><a href="../index.php?action=listproducts">View Products</a></li>
 	</ul>
 
 
@@ -43,7 +43,7 @@ le.com/svn/trunk/html5.js">
 
 	<p>You do Not have access to this Page</p>
 	<p>Please sign in to open an account or login to use the site</p>
-
+<?php echo $_SESSION['Level'];?>
 </main>
 <footer>
 <p>Copyright &copy; 2016 Little Bird Gardens</p>
