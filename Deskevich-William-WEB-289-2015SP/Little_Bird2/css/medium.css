@@ -1,0 +1,332 @@
+* {
+		box-sizing: border-box;
+		padding: 0;
+		margin: 0;
+}
+
+body {
+	
+	margin: 0;
+
+	}
+
+#masthead {
+		background: #a9ab4f;
+		height: 150px;
+		border-bottom: 8px solid #dff;
+	}
+	
+#wrap {
+	width: 100%;
+	margin: auto;
+	background-color: #edab32;
+	overflow: hidden;
+	}
+
+
+nav, main, footer {
+	display: block;
+	}
+
+#masthead h1 {
+	background-repeat: no-repeat;
+	background-image: url(../images/Lil-Bird-MastheadMediumALT.png);
+	width: 100%;
+	margin: auto;
+	padding-left: 20px;
+	background-position: center;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+
+	}
+	
+h1,h2,h3 { 
+	padding-left: 20px;
+	}
+	
+h3 {
+	margin-bottom: 0;
+	}
+
+span {
+	font-size: 150%
+	}
+
+
+
+#homephoto {
+	float: right;
+	border: 1px solid #000;
+	border-radius: 5px;
+	box-shadow: 5px 5px 5px #000;
+	margin: 35px 100px 50px 10px;
+	}
+	
+	
+#info {
+	margin-left: 30px;
+	padding: 30px 45px 30px 50px;
+	
+		}
+		
+main table {
+	margin: auto;
+	width: 90%;
+	border: 1px solid #48a;
+	border-collapse: collapse;
+	}
+
+
+
+
+table {
+    border: 1px solid #001963;
+    border-collapse: collapse;
+
+}
+	
+td, th {
+	padding: 5px;
+	border: 1px solid #48a;
+	}
+	
+td {
+	
+	text-align: center;
+	}
+	
+tr:nth-of-type(even) {
+	background-color: rgba(255, 165, 165, .80);;
+	}
+
+tr:nth-of-type(odd) {
+	background-color: #fff;
+	}
+	
+.text {
+	text-align: left;
+	}
+	
+form { 
+	padding-left: 20px;
+	}
+
+input{
+	margin-bottom: 10px;
+	}
+		
+#navbar {
+	text-align: center;
+	list-style-type: none;
+	width: 40%;
+	display: inline-block;
+	margin-left: 20px;
+	margin-bottom: 25px;
+	}
+	
+#navbar li {
+	padding-top: 10px;
+	display: inline-block;
+	}
+
+#navbar a {
+	text-decoration: none;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 8px 20px;
+	border-radius: 5px;
+	width: 50px;
+	background-color: rgba(255, 165, 165, .80);
+	color: #000;
+	box-shadow: inset -2px -2px 2px #666;
+	}
+
+#navbar .here { 
+	color: rgba(255, 165, 165, .80);
+	background: #333;
+
+}
+
+#navbar .here:hover { 
+	color: rgba(255, 165, 165, .80);
+	background-color: #333;
+	box-shadow: inset -2px -2px 2px #fff;
+}
+
+
+#navbar .here:visited { 
+	color: rgba(255, 165, 165, .80);
+	background: #333;
+
+}
+
+
+
+#navbar a:visited {
+	color: #333;
+	}
+
+#navbar a:hover {
+	color: #fff;
+	border-radius: 5px;
+	background-color: #888;
+	box-shadow: 2px 2px 2px #000;
+	}
+
+
+
+#navbar2 {
+	text-align: center;
+	list-style-type: none;
+	float: right;
+	width: 40%;
+	display: inline-block;
+	margin-left: 20px;
+	}
+	
+#navbar2 li {
+padding-top: 10px;
+display: inline-block;
+	}
+
+#navbar2 a {
+	text-decoration: none;
+	text-align: center;
+	color: #454;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 8px 20px;
+	border-radius: 5px;
+	width: 50px;
+	background-color: rgba(255, 165, 165, .80);
+	color: #fff;
+	box-shadow: inset -2px -2px 2px #666;
+	}
+
+
+	
+#navbar2 a:link { 
+	color: #050;
+	}
+
+#navbar2 a:visited {
+	color: #333;
+	}
+
+#navbar2 a:hover {
+	color: #fff;
+	border-radius: 5px;
+	background-color: #888;
+	box-shadow: 2px 2px 2px #000;
+	}
+
+
+#list {
+	margin-left: 50px;
+	list-style: none;
+	font-size: 20px;
+}
+
+#list li{
+	padding-bottom: 10px;
+}
+
+	
+#submit {
+	margin-top: 0;
+	font-weight: bold;
+	background-color: #aaf;
+	border: 1px solid #000;
+	border-radius: 3px;
+	cursor: pointer;
+	}
+
+label {
+	display: inline-block;
+	width: 150px;
+	}
+
+footer {
+	text-align: center;
+	clear: both;
+	margin-left: 0;
+	bottom: 0;
+	}
+	
+fieldset {
+	background: #a9ab4f;
+	border-radius: 5px;
+	width: 500px;
+	padding-left: 10px;
+	margin-bottom: 20px;
+	margin-left: 25px;
+	box-shadow:  3px 3px 3px #000;
+	}
+
+.tableheader {
+background-color: #95BEE6;
+color:#333;
+font-weight:bold;
+}
+.tablerow {
+background-color: #A7D6F1;
+color:#000;
+}
+.message {
+color: #FF0000;
+font-weight: bold;
+text-align: center;
+width: 100%;
+}
+	
+	
+
+#cart_header th {
+    border-bottom: 2px solid black;
+}
+#cart_footer td {
+    text-align: right;
+    border-top: 2px solid black;
+}
+/* the styles for the classes */
+.right {
+    text-align: right;
+}
+.left {
+    text-align: left;
+}
+
+.cart_qty {
+    text-align: right;
+    width: 3em;
+}
+
+label::before {
+	content: "* ";
+	color: #c70000
+}
+#alinks {
+	margin-left: 5%;
+	margin-top: 50px;
+	list-style: none;
+	font-size: 20px;
+	background-color: #abd;
+	border-radius: 5px;
+	padding: 25px;
+	width: 235px;
+	border: 2px solid #000;
+	box-shadow: 4px 4px 6px #000;
+	font-family: Calibri, arial, sans-serif;
+	font-weight: bold;
+}
+
+#alinks li{
+	padding-bottom: 10px;
+}
+
+#alinks a{
+	text-decoration: none;
+	color: #000;
+}

@@ -1,0 +1,82 @@
+Folder PATH listing for volume Windows8_OS
+Volume serial number is 5E92-AE60
+C:.
+|   cart.php
+|   directoryWireframe.txt
+|   error.php
+|   home.php
+|   home_admin.php
+|   home_admin_B.php
+|   home_user.php
+|   index.php
+|   update.php
+|   update_B.php
+|   
++---assets
+|   |   database_final.sql
+|   |   directoryWireframe.txt
+|   |   ERD.jpg
+|   |   index.html
+|   |   mediaSources.docx
+|   |   styleGuide.pdf
+|   |   
+|   \---Original unedited artwork
+|           20140708_085216.jpg
+|           20140708_085849.jpg
+|           20140713_072629.jpg
+|           20140713_072904.jpg
+|           BarkTiled BG.psd
+|           Beeflowerbest.jpg
+|           BGTexture.jpg
+|           Calendula-PotatovineBG.psd
+|           Corbis-42-29064738.jpg
+|           Deskevich-William-Mountain-Style-Guide.psd
+|           ERD.psd
+|           Lil-Bird-Logo-Masthead.psd
+|           Lil-Bird-Logo-MastheadSmallALT.psd
+|           Littlebird gardens.PSD
+|           streetplanter.jpg
+|           Tree-Bark-BG.jpg
+|           
++---css
+|       lilBird.css
+|       medium.css
+|       small.css
+|       
++---images
+|       20140730_112110.jpg
+|       Bark-BG.jpg
+|       BeeFlower.png
+|       BeeFlowerSmall.png
+|       Lil-Bird-Logo-Masthead.png
+|       Lil-Bird-logo-MastheadMedium.png
+|       Lil-Bird-Logo-MastheadSmallALT.png
+|       Lil-Bird-Masthead.png
+|       Lil-Bird-MastheadMedium.png
+|       Lil-Bird-MastheadMediumALT.png
+|       
++---model
+|       database_db.php
+|       database_error.php
+|       database_final.sql
+|       littlebirddb.php
+|       
+\---view
+        add_item.php
+        captcha_code.php
+        footer.php
+        header.php
+        insert_product.php
+        insert_product_A.php
+        insert_product_B.php
+        login.php
+        login_customer.php
+        login_error.php
+        logout.php
+        productlist.php
+        product_list.php
+        product_list_A.php
+        product_list_home.php
+        product_list_user.php
+        user_login_session.php
+        
